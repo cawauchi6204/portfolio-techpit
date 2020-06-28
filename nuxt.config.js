@@ -4,8 +4,8 @@ const config = require('./.contentful.json')
 const contentful = require('contentful')
 
 const client = contentful.createClient({
-  space:config.CTF_SPACE_ID,
-  accessToken:config.CTF_CDA_ACCESS_TOKEN
+  space: config.CTF_SPACE_ID,
+  accessToken: config.CTF_CDA_ACCESS_TOKEN
 })
 
 export default {
@@ -15,8 +15,8 @@ export default {
   */
   mode: 'universal',
   env: {
-    CTF_SPACE_ID:config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN:config.CTF_CDA_ACCESS_TOKEN
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN
   },
   /*
   ** Nuxt target
@@ -84,28 +84,29 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
- generate: {
-   routes() {
-     return Promise.all([
-       client.getEntries({
-         'content_type':'work'
-       }),
-       client.getEntries({
-         'content_type':'category'
-       }),
-       client.getEntries({
-         'content_type':'tag'
-       }).then(([works,categories,tags]) => {
-         return [
-           ...works.items.map(work => 'work/${work.fields.slug}'),
-           ...categories.items.map(category => 'category/${category.fields.slug}'),
-           ...tags.items.map(tag => 'tag/${tag.sys.id}')
-         ]
-         //分割代入わからん
-       })
-     ])
-   }
- },
+  generate: {
+    routes() {
+      return Promise.all([
+        client.getEntries({
+          'content_type': 'work'
+        }),
+        client.getEntries({
+          'content_type': 'category'
+        }),
+        client.getEntries({
+          'content_type': 'tag'
+        }).then(([works, categories, tags]) => {
+          return [
+            ...works.items.map(work => 'work/${work.fields.slug}'),
+            ...categories.items.map(category => 'category/${category.fields.slug}'),
+            ...tags.items.map(tag => 'tag/${tag.sys.id}')
+          ]
+          //分割代入わからん
+        })
+      ])
+    }
+  },
   build: {
+    extend (config,ctx)
   }
 }
