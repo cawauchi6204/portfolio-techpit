@@ -3,7 +3,7 @@ import { faTags } from '@fortawesome/free-solid-svg-icons'
 const config = require('./.contentful.json')
 const contentful = require('contentful')
 
-const client = contentful.createClinet({
+const client = contentful.createClient({
   space:config.CTF_SPACE_ID,
   accessToken:config.CTF_CDA_ACCESS_TOKEN
 })
