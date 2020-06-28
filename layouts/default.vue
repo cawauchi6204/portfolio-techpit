@@ -26,7 +26,7 @@
               </fa-layers>Twitter
             </button>
           </a>
-          <a href="https://github.com/si-zerodarkthirty" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/cawauchi6204" target="_blank" rel="noopener noreferrer">
             <button>
               <fa-layers full-width class="fa-2x block mx-auto mb-1">
                 <fa :icon="faGithub" />
@@ -34,6 +34,13 @@
             </button>
           </a>
         </div>
+        <input
+          type="text"
+          placeholder="keyword"
+          class="bg-gray-300 p-2 text-xs rounded w-full mt-5 focus:outline-none"
+          v-model="keyword"
+          @keypress.enter="$router.push('/search/' + keyword)"
+        />
       </div>
     </header>
     <main class="w-full mt-10">
@@ -46,7 +53,13 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
+
 export default {
+  data() {
+    return {
+      keyword: ""
+    };
+  },
   computed: {
     faTwitter() {
       return faTwitter;

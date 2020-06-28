@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { createClient } from "~/plugins/contentful.js";
 import Item from "@/components/Item";
+import { createClient } from "~/plugins/contentful.js";
 const client = createClient();
 export default {
   compoents: {
@@ -15,7 +15,7 @@ export default {
   asyncData() {
     return Promise.all([
       client.getEntries({
-        content_type: "work",
+        'content_type': "work",
         order: "-sys.createdAt"
       })
     ])
